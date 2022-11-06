@@ -19,7 +19,11 @@ class PhotosController < ApplicationController
   def show
     p_id = params.fetch("the_photo_id")
     @photo = Photo.where({:id => p_id }).first
+
+    @sign_in_id = session.fetch(:user_id)
+
     render({:template => "photos/details.html.erb"})
+    
   end
 
   def destroy
@@ -37,6 +41,10 @@ class PhotosController < ApplicationController
     photo.image = params.fetch("input_image")
     photo.save
 
+    @sign_in_id = session.fetch(:user_id)
+
     redirect_to("/photos/#{photo.id}")
+
+    #If photo id owner == sessions user then show edit and delete photo, if not, dont show 
   end
 end

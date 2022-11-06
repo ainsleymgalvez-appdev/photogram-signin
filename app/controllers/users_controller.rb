@@ -55,12 +55,11 @@ class UsersController < ApplicationController
 
     redirect_to("/users")
   end
-  # 26:44
 
   def new_registration_form
 
-
-  render({:template => "signup_form.html.erb"})
+    render({:template => "signup_form.html.erb"})
+    
   end
 
   def sign_out
